@@ -8,7 +8,7 @@ import RepostHeader from '../posts-feed/components/shared/RepostHeader';
 
 const Search = () => {
   const [username, setUsername] = useState('');
-  const { data, isLoading, error } = useSearch(username);
+  const { data, isLoading } = useSearch(username);
   const user = useAppSelector((s) => s.user.user);
 
   const userResult =

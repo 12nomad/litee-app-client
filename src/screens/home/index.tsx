@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Toaster, toast } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 
 import { useAppSelector } from '../../store/store';

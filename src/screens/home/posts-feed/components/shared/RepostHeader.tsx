@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa';
 import { AiOutlineRetweet } from 'react-icons/ai';
 import moment from 'moment';
 import ProfileImage from '../../../../../components/ui/ProfileImage';

@@ -1,14 +1,12 @@
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { AiOutlineComment } from 'react-icons/ai';
-import { FaUserCircle } from 'react-icons/fa';
 
 import { useGetPostByIdQuery } from '../../../store/features/api.slice';
 import Loading from '../../../components/ui/Loading';
 import ErrorHandler from '../../../components/ui/ErrorHandler';
 import PostFooter from '../posts-feed/components/shared/PostFooter';
 import RepostHeader from '../posts-feed/components/shared/RepostHeader';
-import { Avatar } from 'flowbite-react';
 import moment from 'moment';
 import PostMedia from '../posts-feed/components/shared/PostMedia';
 import ProfileImage from '../../../components/ui/ProfileImage';

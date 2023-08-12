@@ -8,7 +8,7 @@ import {
 } from '../../../../store/features/api.slice';
 import Loading from '../../../../components/ui/Loading';
 import ErrorHandler from '../../../../components/ui/ErrorHandler';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../store/store';
 import { setPostInputModalOpen } from '../../../../store/features/post.slice';
 import EditRoomNameInput from './EditRoomNameInput';

@@ -1,8 +1,6 @@
 import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { Avatar } from 'flowbite-react';
 import { FormEvent, MutableRefObject } from 'react';
-import { FaUserCircle } from 'react-icons/fa';
 
 import ErrorHandler from '../../../../../components/ui/ErrorHandler';
 import Spinner from '../../../../../components/ui/Spinner';
