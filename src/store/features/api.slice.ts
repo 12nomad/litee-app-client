@@ -71,7 +71,7 @@ export const socket = io(import.meta.env.VITE_SOCKET_URL, {
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:6969/',
+    baseUrl: import.meta.env.VITE_CLIENT_URL,
     credentials: 'include',
   }),
   endpoints: (builder) => ({
