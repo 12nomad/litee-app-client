@@ -11,7 +11,7 @@ import {
 } from 'react-icons/bi';
 import { CgClose } from 'react-icons/cg';
 import { Dropdown } from 'flowbite-react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import {
@@ -34,7 +34,6 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
   const user = useAppSelector((s) => s.user.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const { data: notifsCount } = useGetNotifsCountQuery();
   const { data: messageNotifsCount } = useGetMessageNotifsCountQuery();
   const [logout] = useLogoutMutation();
