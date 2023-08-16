@@ -53,7 +53,7 @@ const RepostInput = ({
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="w-1/3 p-8 bg-black-rich rounded-md border border-black-rich-tint"
+      className="w-11/12 p-4 lg:w-1/2 xl:w-1/3 md:p-8 bg-black-rich rounded-md border border-black-rich-tint"
     >
       <div>
         <h2 className="flex items-center gap-2">

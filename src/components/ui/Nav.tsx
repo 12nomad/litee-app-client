@@ -1,14 +1,11 @@
 import { Navbar } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { CgMenuRightAlt } from 'react-icons/cg';
-
-import { Dispatch, SetStateAction } from 'react';
-
 interface INav {
-  setNavOpen: Dispatch<SetStateAction<boolean>>;
+  toggleNav: (val: boolean) => void;
 }
 
-const Nav = ({ setNavOpen }: INav) => {
+const Nav = ({ toggleNav }: INav) => {
   // const [pendingNotif, setPendingNotif] = useState([]);
   // const [newNotif, setNewNotif] = useState(false);
   // const user = useAppSelector((s) => s.user.user);
@@ -42,7 +39,7 @@ const Nav = ({ setNavOpen }: INav) => {
             <CgMenuRightAlt
               className="cursor-pointer xl:hidden"
               size={24}
-              onClick={() => setNavOpen(true)}
+              onClick={() => toggleNav(true)}
             />
             {/* <Tooltip content="post..." placement="bottom-end">
               <MdAddBox

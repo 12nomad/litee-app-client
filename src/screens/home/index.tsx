@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useAppSelector } from '../../store/store';
 import Sidebar from '../../components/ui/Sidebar';
@@ -33,6 +33,8 @@ const Home = () => {
     };
   }, []);
 
+  const toggleNav = useCallback((val: boolean) => setNavOpen(val), []);
+
   return (
     <>
       <div>
@@ -47,14 +49,14 @@ const Home = () => {
           }}
         />
       </div>
-      <Nav setNavOpen={setNavOpen} />
+      <Nav toggleNav={toggleNav} />
       <div className="xl:max-w-screen-xl xl:px-4 grid grid-cols-3 mx-auto">
         <aside
           className={`h-screen bg-black-rich px-4 py-6 transition ${
             navOpen ? 'translate-x-0' : '-translate-x-full'
           } w-full fixed z-10 top-0 left-0 xl:static xl:block xl:translate-x-0 xl:px-0 xl:h-[calc(100vh-52px)]`}
         >
-          <Sidebar setNavOpen={setNavOpen} />
+          <Sidebar toggleNav={toggleNav} />
         </aside>
         <main className="max-h-[calc(100vh-76px)] col-span-3 xl:col-span-2 pt-6 overflow-auto no-scrollbar">
           {postInputModalOpen && <PostModal />}

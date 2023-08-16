@@ -27,7 +27,7 @@ const ViewPost = () => {
   if (error) return <ErrorHandler error={error} />;
 
   return !isLoading && data ? (
-    <div className="w-3/4 mx-auto text-sm">
+    <div className="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm">
       <Helmet>
         <title>Post | Litee.</title>
       </Helmet>

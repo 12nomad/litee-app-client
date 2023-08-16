@@ -25,30 +25,27 @@ import { setPostInputModalOpen } from '../../store/features/post.slice';
 import PostInput from '../../screens/home/posts-feed/components/PostInput';
 import { EVENTS } from '../../data/event.constant';
 import ProfileImage from './ProfileImage';
-import { Dispatch, SetStateAction } from 'react';
 
 interface ISidebar {
-  setNavOpen: Dispatch<SetStateAction<boolean>>;
+  toggleNav: (val: boolean) => void;
 }
 
-const Sidebar = ({ setNavOpen }: ISidebar) => {
+const Sidebar = ({ toggleNav }: ISidebar) => {
   const user = useAppSelector((s) => s.user.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const { data: notifsCount } = useGetNotifsCountQuery();
-  const { data: messageNotifsCount } = useGetMessageNotifsCountQuery({
-    pathname: location.pathname,
-  });
+  const { data: messageNotifsCount } = useGetMessageNotifsCountQuery();
   const [logout] = useLogoutMutation();
 
   const onCreatePost = () => {
-    setNavOpen(false);
+    toggleNav(false);
     dispatch(setPostInputModalOpen({ val: true, element: <PostInput /> }));
   };
 
   const onGoToProfile = () => {
-    setNavOpen(false);
+    toggleNav(false);
     navigate(`/profile/${user?.username}`);
   };
 
@@ -72,7 +69,7 @@ const Sidebar = ({ setNavOpen }: ISidebar) => {
             className={({ isActive }) =>
               isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
             }
-            onClick={() => setNavOpen(false)}
+            onClick={() => toggleNav(false)}
           >
             <div className="flex items-center gap-2 ">
               <HiOutlineHome size={22} />
@@ -83,7 +80,7 @@ const Sidebar = ({ setNavOpen }: ISidebar) => {
           <CgClose
             className="text-white-powder cursor-pointer xl:hidden"
             size={28}
-            onClick={() => setNavOpen(false)}
+            onClick={() => toggleNav(false)}
           />
         </div>
 
@@ -92,7 +89,7 @@ const Sidebar = ({ setNavOpen }: ISidebar) => {
           className={({ isActive }) =>
             isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
           }
-          onClick={() => setNavOpen(false)}
+          onClick={() => toggleNav(false)}
         >
           <div className="flex items-center gap-2 ">
             {notifsCount && notifsCount > 0 ? (
@@ -114,7 +111,7 @@ const Sidebar = ({ setNavOpen }: ISidebar) => {
           className={({ isActive }) =>
             isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
           }
-          onClick={() => setNavOpen(false)}
+          onClick={() => toggleNav(false)}
         >
           <div className="flex items-center gap-2 ">
             {messageNotifsCount && messageNotifsCount > 0 ? (
@@ -136,7 +133,7 @@ const Sidebar = ({ setNavOpen }: ISidebar) => {
           className={({ isActive }) =>
             isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
           }
-          onClick={() => setNavOpen(false)}
+          onClick={() => toggleNav(false)}
         >
           <div className="flex items-center gap-2 ">
             <BiSearchAlt size={22} />
@@ -149,7 +146,7 @@ const Sidebar = ({ setNavOpen }: ISidebar) => {
           className={({ isActive }) =>
             isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
           }
-          onClick={() => setNavOpen(false)}
+          onClick={() => toggleNav(false)}
         >
           <div className="flex items-center gap-2 ">
             <HiOutlineUserCircle size={22} />

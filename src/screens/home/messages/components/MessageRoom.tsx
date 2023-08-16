@@ -61,7 +61,7 @@ const MessageRoom = () => {
   };
 
   return (
-    <div className="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full overflow-hidden">
+    <div className="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full overflow-hidden min-h-[calc(100vh-100px)]">
       <Helmet>
         <title>Chat | Litee.</title>
       </Helmet>

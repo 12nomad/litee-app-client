@@ -506,18 +506,18 @@ export const api = createApi({
     }),
     editLatestMessage: builder.mutation<
       CommonOutput,
-      { roomId: number; senderId: number; pathname: string }
+      { roomId: number; senderId: number }
     >({
       query: ({ roomId, senderId }) => ({
         url: 'rooms/edit-latest-message',
         method: 'POST',
         body: { roomId, senderId },
       }),
-      async onQueryStarted({ pathname }, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
           api.util.updateQueryData(
             'getMessageNotifsCount',
-            { pathname },
+            undefined,
             (draft) => --draft,
           ),
         );
@@ -760,18 +760,21 @@ export const api = createApi({
         }
       },
     }),
-    getMessageNotifsCount: builder.query<number, { pathname: string }>({
+    getMessageNotifsCount: builder.query<number, void>({
       query: () => 'notifications/message-count',
       keepUnusedDataFor: 0,
       async onCacheEntryAdded(
-        { pathname },
+        _,
         { cacheDataLoaded, cacheEntryRemoved, updateCachedData },
       ) {
         try {
           await cacheDataLoaded;
 
           socket.on<`${EVENTS}`>('INCOMING_MESSAGE', (message: Message) => {
-            if (!pathname.startsWith('/messages/')) {
+            if (
+              !window.location.pathname.trim().startsWith('/messages/') &&
+              !message.room.isGroupRoom
+            ) {
               toast(`new message from ${message.sender.username}`);
               updateCachedData((draft) => ++draft);
             }

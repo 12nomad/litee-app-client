@@ -3,10 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Tooltip } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 
-import {
-  // useEditLatestMessageMutation,
-  useGetRoomsQuery,
-} from '../../../store/features/api.slice';
+import { useGetRoomsQuery } from '../../../store/features/api.slice';
 import Loading from '../../../components/ui/Loading';
 import ErrorHandler from '../../../components/ui/ErrorHandler';
 import { useAppSelector } from '../../../store/store';

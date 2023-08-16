@@ -1,5 +1,4 @@
 import { MutableRefObject, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import {
   Room,
@@ -14,7 +13,6 @@ const useMessageRoom = (
 ) => {
   // const [userTyping, setUserTyping] = useState(false);
   const [editLatestMessage] = useEditLatestMessageMutation();
-  const location = useLocation();
 
   // useEffect(() => {
   //   FIXME: disabling isTyping feature for now (too many requests)
@@ -34,7 +32,6 @@ const useMessageRoom = (
     if (data && data.latestMessage?.senderId !== userId) {
       editLatestMessage({
         roomId,
-        pathname: location.pathname,
         senderId: data.latestMessage?.senderId || 0,
       });
     }
