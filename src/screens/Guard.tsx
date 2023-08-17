@@ -9,27 +9,27 @@ import { EVENTS } from '../data/event.constant';
 
 const Guard = () => {
   const location = useLocation();
-  const { data, isLoading, error } = useGetAuthUserQuery({
+  const { currentData, isLoading, error, isFetching } = useGetAuthUserQuery({
     pathname: location.pathname,
   });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoading && data) {
-      dispatch(addUser({ user: data }));
+    if (!isLoading && !isFetching && currentData) {
+      dispatch(addUser({ user: currentData }));
       socket.connect();
-      socket.emit<`${EVENTS}`>('CONNECT', { username: data.username });
-    } else if (!isLoading && !data) {
+      socket.emit<`${EVENTS}`>('CONNECT', { username: currentData.username });
+    } else if (!isLoading && !isFetching && !currentData) {
       return navigate('/auth', { replace: true });
     }
-  }, [isLoading, data]);
+  }, [isLoading, isFetching, currentData]);
 
   if (isLoading) return <Loading withNav={false} />;
 
   if (error) return <Navigate to="/auth" replace />;
 
-  return !isLoading && data ? <Outlet /> : null;
+  return !isLoading && currentData ? <Outlet /> : null;
 };
 
 export default Guard;
