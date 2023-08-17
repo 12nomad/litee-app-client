@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useNavigate } from 'react-router-dom';
-// import { useCookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
 import Input from '../../../components/form/Input';
 import SubmitButton from '../../../components/form/SubmitButton';
@@ -38,7 +38,7 @@ const Register = () => {
   } = useForm<RegisterValidationSchema>({
     resolver: zodResolver(registerValidationSchema),
   });
-  // const [, setCookie] = useCookies(['__litee_app_access_token']);
+  const [, setCookie] = useCookies(['__litee_app_access_token']);
   const navigate = useNavigate();
   const [registerUser, { isLoading, error }] = useRegisterMutation();
 
@@ -47,7 +47,7 @@ const Register = () => {
 
     if (!('error' in result)) {
       reset();
-      // setCookie('__litee_app_access_token', result.data.token);
+      setCookie('__litee_app_access_token', result.data.token);
       return navigate('/', { replace: true });
     }
   };
