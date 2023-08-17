@@ -2,9 +2,9 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect, useRef, useState } from 'react';
 
 import { useGetFeedPostsQuery } from '../../../store/features/api.slice';
-import Loading from '../../../components/ui/Loading';
 import ErrorHandler from '../../../components/ui/ErrorHandler';
 import PostArticle from './components/PostArticle';
+import Spinner from '../../../components/ui/Spinner';
 
 const PostsFeed = () => {
   const [page, setPage] = useState<number>(1);
@@ -54,7 +54,7 @@ const PostsFeed = () => {
           <></>
         )}
 
-        {isLoading || (isFetching && <Loading />)}
+        {(isLoading || isFetching) && <Spinner />}
 
         <div ref={targetRef} className={isFetching ? 'mt-12' : ''}></div>
       </div>
