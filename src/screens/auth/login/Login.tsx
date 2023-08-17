@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useNavigate } from 'react-router-dom';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import { SerializedError } from '@reduxjs/toolkit';
-// import { useCookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
 import Input from '../../../components/form/Input';
 import SubmitButton from '../../../components/form/SubmitButton';
@@ -39,7 +39,7 @@ const Login = () => {
   } = useForm<LogInValidationSchema>({
     resolver: zodResolver(logInValidationSchema),
   });
-  // const [, setCookie] = useCookies(['__litee_app_access_token']);
+  const [, setCookie] = useCookies(['__litee_app_access_token']);
   const navigate = useNavigate();
   const [login, { isLoading, error }] = useLoginMutation();
 
@@ -63,7 +63,9 @@ const Login = () => {
 
     if (!('error' in result)) {
       reset();
-      // setCookie('__litee_app_access_token', result.data.token);
+      setCookie('__litee_app_access_token', result.data.token, {
+        domain: '.railway.app',
+      });
       return navigate('/', { replace: true });
     }
   };
