@@ -73,7 +73,6 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_SERVER_URL,
     credentials: 'include',
-    mode: 'cors',
   }),
   endpoints: (builder) => ({
     // TODO: user
