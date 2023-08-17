@@ -67,7 +67,6 @@ const Login = () => {
         secure: true,
         sameSite: 'none',
         domain: '.railway.app',
-        expires: new Date(),
       });
       return navigate('/', { replace: true });
     }
