@@ -12,14 +12,13 @@ import {
 import { CgClose } from 'react-icons/cg';
 import { Dropdown } from 'flowbite-react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import {
   socket,
   useGetMessageNotifsCountQuery,
   useGetNotifsCountQuery,
-  // useLogoutMutation,
+  useLogoutMutation,
 } from '../../store/features/api.slice';
 import { clearUser } from '../../store/features/user.slice';
 import { setPostInputModalOpen } from '../../store/features/post.slice';
@@ -35,10 +34,9 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
   const user = useAppSelector((s) => s.user.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [, , removeCookie] = useCookies(['__litee_app_access_token']);
   const { data: notifsCount } = useGetNotifsCountQuery();
   const { data: messageNotifsCount } = useGetMessageNotifsCountQuery();
-  // const [logout] = useLogoutMutation();
+  const [logout] = useLogoutMutation();
 
   const onCreatePost = () => {
     toggleNav(false);
@@ -51,19 +49,14 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
   };
 
   const onSignout = async () => {
-    // const result = await logout();
-    // if (!('error' in result)) {
-    //   dispatch(clearUser());
-    //   socket.emit<`${EVENTS}`>('DISCONNECT', { username: user?.username });
-    //   socket.disconnect();
-    //   return navigate('/auth', { replace: true });
-    // }
+    const result = await logout();
 
-    socket.emit<`${EVENTS}`>('DISCONNECT', { username: user?.username });
-    socket.disconnect();
-    dispatch(clearUser());
-    removeCookie('__litee_app_access_token');
-    return navigate('/auth', { replace: true });
+    if (!('error' in result)) {
+      dispatch(clearUser());
+      socket.emit<`${EVENTS}`>('DISCONNECT', { username: user?.username });
+      socket.disconnect();
+      return navigate('/auth', { replace: true });
+    }
   };
 
   return (
