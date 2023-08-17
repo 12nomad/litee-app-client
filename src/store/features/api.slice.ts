@@ -71,9 +71,8 @@ export const socket = io(import.meta.env.VITE_SOCKET_URL, {
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_CLIENT_URL,
+    baseUrl: import.meta.env.VITE_SERVER_URL,
     credentials: 'include',
-    mode: 'cors',
   }),
   endpoints: (builder) => ({
     // TODO: user
