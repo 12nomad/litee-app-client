@@ -3,12 +3,13 @@ import { Tabs } from 'flowbite-react';
 import { VscFlame } from 'react-icons/vsc';
 import { BiBookmarkAltPlus } from 'react-icons/bi';
 import type { CustomFlowbiteTheme } from 'flowbite-react';
+import { useCookies } from 'react-cookie';
 
 import {
   socket,
   useGetUserByUsernameQuery,
   useLazyGetRoomByUserIdQuery,
-  useLogoutMutation,
+  // useLogoutMutation,
   useToggleFollowMutation,
 } from '../../../store/features/api.slice';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -40,8 +41,9 @@ const Profile = () => {
   const { username } = useParams<{ username: string }>();
   const dispatch = useAppDispatch();
   const user = useAppSelector((s) => s.user.user);
+  const [, , removeCookie] = useCookies(['__litee_app_access_token']);
   const navigate = useNavigate();
-  const [logout, { isLoading: logoutLoading }] = useLogoutMutation();
+  // const [logout, { isLoading: logoutLoading }] = useLogoutMutation();
   const [follow, { isLoading: followLoading }] = useToggleFollowMutation();
   const [getRoom, { isLoading: roomLoading }] = useLazyGetRoomByUserIdQuery();
 
@@ -62,14 +64,20 @@ const Profile = () => {
   };
 
   const onLogout = async () => {
-    const result = await logout();
+    // const result = await logout();
 
-    if (!('error' in result)) {
-      socket.emit<`${EVENTS}`>('DISCONNECT', { username: user?.username });
-      socket.disconnect();
-      dispatch(clearUser());
-      navigate('/auth', { replace: true });
-    }
+    // if (!('error' in result)) {
+    //   socket.emit<`${EVENTS}`>('DISCONNECT', { username: user?.username });
+    //   socket.disconnect();
+    //   dispatch(clearUser());
+    //   navigate('/auth', { replace: true });
+    // }
+
+    socket.emit<`${EVENTS}`>('DISCONNECT', { username: user?.username });
+    socket.disconnect();
+    dispatch(clearUser());
+    removeCookie('__litee_app_access_token');
+    navigate('/auth', { replace: true });
   };
 
   const userInFollowers = !(
@@ -129,7 +137,7 @@ const Profile = () => {
                 </button>
                 <button
                   className="px-2 py-1 rounded-md bg-black-rich-tint"
-                  disabled={logoutLoading}
+                  // disabled={logoutLoading}
                   onClick={onLogout}
                 >
                   logout

@@ -10,6 +10,7 @@ export type NotifType = 'FOLLOW' | 'LIKE' | 'REPLY' | 'MESSAGE' | 'REPOST';
 
 export interface CommonOutput {
   success: boolean;
+  token?: string;
 }
 
 export interface Notifications {
