@@ -63,7 +63,10 @@ const Login = () => {
 
     if (!('error' in result)) {
       reset();
-      setCookie('__litee_app_access_token', result.data.token);
+      setCookie('__litee_app_access_token', result.data.token, {
+        secure: true,
+        sameSite: 'none',
+      });
       return navigate('/', { replace: true });
     }
   };
