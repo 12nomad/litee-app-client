@@ -66,6 +66,8 @@ const Login = () => {
       setCookie('__litee_app_access_token', result.data.token, {
         secure: true,
         sameSite: 'none',
+        domain: '.railway.app',
+        expires: new Date(),
       });
       return navigate('/', { replace: true });
     }
