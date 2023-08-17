@@ -47,7 +47,11 @@ const Register = () => {
 
     if (!('error' in result)) {
       reset();
-      setCookie('__litee_app_access_token', result.data.token);
+      console.log(result.data.token);
+      setCookie('__litee_app_access_token', result.data.token, {
+        domain: '.railway.app',
+        sameSite: 'lax',
+      });
       return navigate('/', { replace: true });
     }
   };
