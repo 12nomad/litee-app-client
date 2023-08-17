@@ -64,10 +64,7 @@ const Login = () => {
     if (!('error' in result)) {
       reset();
       console.log(result.data.token);
-      setCookie('__litee_app_access_token', result.data.token, {
-        domain: '.railway.app',
-        sameSite: 'lax',
-      });
+      setCookie('__litee_app_access_token', result.data.token);
       return navigate('/', { replace: true });
     }
   };
