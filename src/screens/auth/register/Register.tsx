@@ -84,7 +84,7 @@ const Register = () => {
                   to="/auth"
                   className="font-medium text-blue-cerulean hover:underline underline"
                 >
-                  Sign up.
+                  Sign in.
                 </Link>
               </p>
 
