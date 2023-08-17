@@ -54,7 +54,11 @@ const PostsFeed = () => {
           <></>
         )}
 
-        {(isLoading || isFetching) && <Spinner />}
+        {(isLoading || isFetching) && (
+          <div className="w-full flex justify-center">
+            <Spinner />
+          </div>
+        )}
 
         <div ref={targetRef} className={isFetching ? 'mt-12' : ''}></div>
       </div>
