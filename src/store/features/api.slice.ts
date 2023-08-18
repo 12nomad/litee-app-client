@@ -10,7 +10,6 @@ export type NotifType = 'FOLLOW' | 'LIKE' | 'REPLY' | 'MESSAGE' | 'REPOST';
 
 export interface CommonOutput {
   success: boolean;
-  token?: string;
 }
 
 export interface Notifications {
@@ -77,10 +76,9 @@ export const api = createApi({
   }),
   endpoints: (builder) => ({
     // TODO: user
-    getAuthUser: builder.query<User, { pathname: string }>({
+    getAuthUser: builder.query<User, void>({
       query: () => 'users',
       keepUnusedDataFor: 0,
-      forceRefetch: ({ currentArg }) => currentArg?.pathname === '/auth',
     }),
     searchUserByUsername: builder.query<User[], { username: string }>({
       query: ({ username }) => `users/search-user?username=${username}`,
@@ -158,16 +156,12 @@ export const api = createApi({
           ),
         );
         const patchAuthUserResult = dispatch(
-          api.util.updateQueryData(
-            'getAuthUser',
-            { pathname: `/profile/${username}` },
-            (draft) => {
-              draft.username = username;
-              draft.description = description;
-              draft.profileImage = profileImage;
-              draft.name = name;
-            },
-          ),
+          api.util.updateQueryData('getAuthUser', undefined, (draft) => {
+            draft.username = username;
+            draft.description = description;
+            draft.profileImage = profileImage;
+            draft.name = name;
+          }),
         );
         try {
           await queryFulfilled;

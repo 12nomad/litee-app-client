@@ -1,30 +1,17 @@
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useEffect } from 'react';
 
 import lottiefile from '../../assets/lottie/animation_ljztp22z.json';
-import { socket, useGetAuthUserQuery } from '../../store/features/api.slice';
-import Loading from '../../components/ui/Loading';
+import { socket } from '../../store/features/api.slice';
 
 const Auth = () => {
   const location = useLocation();
-  const { isLoading, currentData, isFetching } = useGetAuthUserQuery({
-    pathname: location.pathname,
-  });
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLoading && !isFetching && currentData && currentData.id > 0) {
-      return navigate('/', { replace: true });
-    }
-  }, [isLoading, isFetching, currentData]);
 
   useEffect(() => {
     document.querySelector('html')!.classList.remove('dark');
     socket.disconnect();
   }, []);
-
-  if (isLoading || isFetching) return <Loading />;
 
   return (
     <div

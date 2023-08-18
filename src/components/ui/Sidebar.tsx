@@ -52,9 +52,9 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
     const result = await logout();
 
     if (!('error' in result)) {
-      dispatch(clearUser());
       socket.emit<`${EVENTS}`>('DISCONNECT', { username: user?.username });
       socket.disconnect();
+      dispatch(clearUser());
       return navigate('/auth', { replace: true });
     }
   };

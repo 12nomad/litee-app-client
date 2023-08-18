@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import Loading from '../components/ui/Loading';
@@ -8,10 +8,7 @@ import { addUser } from '../store/features/user.slice';
 import { EVENTS } from '../data/event.constant';
 
 const Guard = () => {
-  const location = useLocation();
-  const { currentData, isLoading, error, isFetching } = useGetAuthUserQuery({
-    pathname: location.pathname,
-  });
+  const { currentData, isLoading, error, isFetching } = useGetAuthUserQuery();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -23,7 +20,7 @@ const Guard = () => {
     } else if (!isLoading && !isFetching && !currentData) {
       return navigate('/auth', { replace: true });
     }
-  }, [isLoading, isFetching, currentData]);
+  }, [currentData]);
 
   if (isLoading) return <Loading withNav={false} />;
 
