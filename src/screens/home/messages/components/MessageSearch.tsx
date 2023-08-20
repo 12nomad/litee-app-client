@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { Badge } from 'flowbite-react';
-import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 
 import useSearch from '../../../../hooks/useSearch';
@@ -9,6 +8,7 @@ import ErrorHandler from '../../../../components/ui/ErrorHandler';
 import RepostHeader from '../../posts-feed/components/shared/RepostHeader';
 import { useAppSelector } from '../../../../store/store';
 import { useCreateRoomMutation } from '../../../../store/features/api.slice';
+import Container from '../../../../components/ui/Container';
 
 const customBadgeTheme: CustomFlowbiteTheme['badge'] = {
   root: {
@@ -54,11 +54,10 @@ const MessageSearch = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-110px)] w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm">
-      <Helmet>
-        <title>New Message | Litee.</title>
-      </Helmet>
-
+    <Container
+      containerClass="min-h-[calc(100vh-110px)] w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
+      tabTitle="New Message"
+    >
       <header>
         <h3 className="text-lg font-medium">New Message</h3>
         <div className="w-full h-[1px] bg-black-rich-tint mt-1 mb-5"></div>
@@ -131,7 +130,7 @@ const MessageSearch = () => {
           </button>
         </>
       )}
-    </div>
+    </Container>
   );
 };
 

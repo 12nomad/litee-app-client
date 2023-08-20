@@ -1,13 +1,12 @@
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import Container from '../../../components/ui/Container';
 
 const NotFound = () => {
   return (
-    <section className=" w-full grid place-items-center">
-      <Helmet>
-        <title>Not Found | Litee Snack🍔</title>
-      </Helmet>
-
+    <Container
+      containerClass="w-full grid place-items-center"
+      tabTitle="Not Found"
+    >
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-sm text-center">
           <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-rusty-red">
@@ -28,7 +27,7 @@ const NotFound = () => {
           </Link>
         </div>
       </div>
-    </section>
+    </Container>
   );
 };
 

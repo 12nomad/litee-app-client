@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { Tabs } from 'flowbite-react';
 import { VscFlame } from 'react-icons/vsc';
 import { BiBookmarkAltPlus } from 'react-icons/bi';
@@ -20,6 +19,7 @@ import { setPostInputModalOpen } from '../../../store/features/post.slice';
 import EditProfileInput from './components/EditProfileInput';
 import { EVENTS } from '../../../data/event.constant';
 import { clearUser } from '../../../store/features/user.slice';
+import Container from '../../../components/ui/Container';
 
 const customTabsTheme: CustomFlowbiteTheme['tab'] = {
   tablist: {
@@ -102,11 +102,10 @@ const Profile = () => {
   };
 
   return !isLoading && data ? (
-    <div className="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm">
-      <Helmet>
-        <title>{data.username} | Litee.</title>
-      </Helmet>
-
+    <Container
+      containerClass="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
+      tabTitle={data.username}
+    >
       <div className="w-full grid grid-cols-4 md:grid-cols-3 ">
         <img
           src={
@@ -210,7 +209,7 @@ const Profile = () => {
           </Tabs.Item>
         </Tabs.Group>
       </div>
-    </div>
+    </Container>
   ) : (
     <></>
   );

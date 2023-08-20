@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { IoMdSend } from 'react-icons/io';
 import { BiMessageRoundedEdit } from 'react-icons/bi';
 
@@ -15,6 +14,7 @@ import EditRoomNameInput from './EditRoomNameInput';
 import { Avatar } from 'flowbite-react';
 import { ChangeEvent, useRef, useState } from 'react';
 import useMessageRoom from '../hooks/useMessageRoom';
+import Container from '../../../../components/ui/Container';
 
 const MessageRoom = () => {
   const { roomId: id } = useParams<{ roomId: string }>();
@@ -61,11 +61,10 @@ const MessageRoom = () => {
   };
 
   return (
-    <div className="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full overflow-hidden min-h-[calc(100vh-100px)]">
-      <Helmet>
-        <title>Chat | Litee.</title>
-      </Helmet>
-
+    <Container
+      containerClass="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full overflow-hidden min-h-[calc(100vh-100px)]"
+      tabTitle="Chat"
+    >
       <div className="mb-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -245,7 +244,7 @@ const MessageRoom = () => {
           <IoMdSend size={28} className="text-purple-eminence" />
         </button>
       </div>
-    </div>
+    </Container>
   );
 };
 

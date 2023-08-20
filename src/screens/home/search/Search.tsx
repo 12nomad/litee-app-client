@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 
 import useSearch from '../../../hooks/useSearch';
 import { useAppSelector } from '../../../store/store';
 import { Link } from 'react-router-dom';
 import RepostHeader from '../posts-feed/components/shared/RepostHeader';
+import Container from '../../../components/ui/Container';
 
 const Search = () => {
   const [username, setUsername] = useState('');
@@ -15,11 +15,10 @@ const Search = () => {
     data && data.filter((el) => el.username !== user?.username);
 
   return (
-    <div className="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full">
-      <Helmet>
-        <title>Search | Litee.</title>
-      </Helmet>
-
+    <Container
+      containerClass="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full"
+      tabTitle="Search"
+    >
       <header>
         <div className="flex items-baseline gap-2">
           <label htmlFor="username" className="block mb-2 text-lg font-medium">
@@ -61,7 +60,7 @@ const Search = () => {
         ) : (
           <p className="mb-2">no user found...</p>
         ))}
-    </div>
+    </Container>
   );
 };
 

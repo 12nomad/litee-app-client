@@ -1,10 +1,10 @@
-import { Helmet } from 'react-helmet-async';
 import { useEffect, useRef, useState } from 'react';
 
 import { useGetFeedPostsQuery } from '../../../store/features/api.slice';
 import ErrorHandler from '../../../components/ui/ErrorHandler';
 import PostArticle from './components/PostArticle';
 import Spinner from '../../../components/ui/Spinner';
+import Container from '../../../components/ui/Container';
 
 const PostsFeed = () => {
   const [page, setPage] = useState<number>(1);
@@ -40,11 +40,10 @@ const PostsFeed = () => {
   }, [targetRef, isLoading, isFetching, newItemsCount]);
 
   return (
-    <div className="w-full xl:w-3/4 mx-auto no-scrollbar">
-      <Helmet>
-        <title>Feed | Litee.</title>
-      </Helmet>
-
+    <Container
+      containerClass="w-full xl:w-3/4 mx-auto no-scrollbar"
+      tabTitle="Feed"
+    >
       <div className="space-y-8">
         {isError && <ErrorHandler error={error} />}
 
@@ -62,7 +61,7 @@ const PostsFeed = () => {
 
         <div ref={targetRef} className={isFetching ? 'mt-12' : ''}></div>
       </div>
-    </div>
+    </Container>
   );
 };
 

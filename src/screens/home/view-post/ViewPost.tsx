@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { AiOutlineComment } from 'react-icons/ai';
 
 import { useGetPostByIdQuery } from '../../../store/features/api.slice';
@@ -10,6 +9,7 @@ import RepostHeader from '../posts-feed/components/shared/RepostHeader';
 import moment from 'moment';
 import PostMedia from '../posts-feed/components/shared/PostMedia';
 import ProfileImage from '../../../components/ui/ProfileImage';
+import Container from '../../../components/ui/Container';
 
 const ViewPost = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -27,11 +27,10 @@ const ViewPost = () => {
   if (error) return <ErrorHandler error={error} />;
 
   return !isLoading && data ? (
-    <div className="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm">
-      <Helmet>
-        <title>Post | Litee.</title>
-      </Helmet>
-
+    <Container
+      containerClass="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
+      tabTitle="Post"
+    >
       <article className="w-full ">
         <RepostHeader
           createdAt={data.createdAt}
@@ -102,7 +101,7 @@ const ViewPost = () => {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   ) : (
     <></>
   );

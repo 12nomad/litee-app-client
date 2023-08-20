@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
@@ -14,6 +13,7 @@ import {
   ResetPasswordStepOneValidationSchema,
   resetPasswordStepOneValidationSchema,
 } from '../../../schemas/auth.schema';
+import Container from '../../../components/ui/Container';
 
 export type Steps = '1' | '2' | '3';
 
@@ -44,11 +44,7 @@ const PasswordReset = () => {
   };
 
   return (
-    <section className="w-[344px] md:w-auto">
-      <Helmet>
-        <title>Reset Password | Litee Snack🍔</title>
-      </Helmet>
-
+    <Container containerClass="w-[344px] md:w-auto" tabTitle="Reset Password">
       <Step step={step} />
 
       <div className="bg-white rounded-lg shadow-sm text-left mx-8 md:mx-0">
@@ -105,7 +101,7 @@ const PasswordReset = () => {
           )}
         </div>
       </div>
-    </section>
+    </Container>
   );
 };
 

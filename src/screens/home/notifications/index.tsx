@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { Tooltip } from 'flowbite-react';
 import { BsCheck2All } from 'react-icons/bs';
 
@@ -11,6 +10,7 @@ import Loading from '../../../components/ui/Loading';
 import ErrorHandler from '../../../components/ui/ErrorHandler';
 import NotifType from './components/NotifType';
 import { Link } from 'react-router-dom';
+import Container from '../../../components/ui/Container';
 
 const Notifications = () => {
   const { data, isLoading, error } = useGetNotifsQuery();
@@ -22,11 +22,10 @@ const Notifications = () => {
   if (error) <ErrorHandler error={error} />;
 
   return (
-    <div className="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm">
-      <Helmet>
-        <title>Notifications | Litee.</title>
-      </Helmet>
-
+    <Container
+      containerClass="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
+      tabTitle="Notifications"
+    >
       <div className="mb-3">
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-medium">Notifications</h3>
@@ -78,7 +77,7 @@ const Notifications = () => {
             </Link>
           ))
         : 'Nothing to show for now...'}
-    </div>
+    </Container>
   );
 };
 

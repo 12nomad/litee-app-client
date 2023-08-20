@@ -1,5 +1,4 @@
 import { LuMessagesSquare } from 'react-icons/lu';
-import { Helmet } from 'react-helmet-async';
 import { Tooltip } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 
@@ -7,6 +6,7 @@ import { useGetRoomsQuery } from '../../../store/features/api.slice';
 import Loading from '../../../components/ui/Loading';
 import ErrorHandler from '../../../components/ui/ErrorHandler';
 import { useAppSelector } from '../../../store/store';
+import Container from '../../../components/ui/Container';
 
 const MessageInbox = () => {
   const user = useAppSelector((s) => s.user.user);
@@ -19,11 +19,10 @@ const MessageInbox = () => {
   if (error) return <ErrorHandler error={error} />;
 
   return (
-    <div className="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm">
-      <Helmet>
-        <title>Messages | Litee.</title>
-      </Helmet>
-
+    <Container
+      containerClass="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
+      tabTitle="Messages"
+    >
       <div className="mb-3">
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-medium">Inbox</h3>
@@ -134,7 +133,7 @@ const MessageInbox = () => {
             </Link>
           ))
         : 'Start a conversation first...'}
-    </div>
+    </Container>
   );
 };
 

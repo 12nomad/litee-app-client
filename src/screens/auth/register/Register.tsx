@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,6 +10,7 @@ import {
   registerValidationSchema,
 } from '../../../schemas/auth.schema';
 import { useRegisterMutation } from '../../../store/features/api.slice';
+import Container from '../../../components/ui/Container';
 
 const registerFields: IFormField<FieldValues>[] = [
   {
@@ -50,11 +50,7 @@ const Register = () => {
   };
 
   return (
-    <section className="w-[344px] md:w-[422px]">
-      <Helmet>
-        <title>Register | Litee.</title>
-      </Helmet>
-
+    <Container containerClass="w-[344px] md:w-[422px]" tabTitle="Register">
       <div className="md:w-[422px] bg-white-powder rounded-lg shadow-sm text-left mb-8 xl:mb-0">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-medium leading-tight tracking-tight text-gray-800 md:text-2xl  flex items-center justify-center gap-2">
@@ -100,7 +96,7 @@ const Register = () => {
           </form>
         </div>
       </div>
-    </section>
+    </Container>
   );
 };
 
