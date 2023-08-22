@@ -1,1 +1,1 @@
-# litee-app-client (nestjs server in litee-app repository) 
+# Litee Client (nestjs server 👉 [Litee Server](https://github.com/12nomad/litee-app)) 
