@@ -1,29 +1,29 @@
-import { Tooltip } from 'flowbite-react';
-import { BsCheck2All } from 'react-icons/bs';
+import { Tooltip } from "flowbite-react";
+import { BsCheck2All } from "react-icons/bs";
 
 import {
   useDeleteNotifsMutation,
   useGetNotifsQuery,
   useViewedNotifMutation,
-} from '../../../store/features/api.slice';
-import Loading from '../../../components/ui/Loading';
-import ErrorHandler from '../../../components/ui/ErrorHandler';
-import NotifType from './components/NotifType';
-import { Link } from 'react-router-dom';
-import Container from '../../../components/ui/Container';
+} from "../../../store/features/api.slice";
+import Loading from "../../../components/ui/Loading";
+import ErrorHandler from "../../../components/ui/ErrorHandler";
+import NotifType from "./components/NotifType";
+import { Link } from "react-router-dom";
+import Container from "../../../components/ui/Container";
 
 const Notifications = () => {
   const { data, isLoading, error } = useGetNotifsQuery();
   const [viewedNotif] = useViewedNotifMutation();
   const [deleteNotifs] = useDeleteNotifsMutation();
 
-  if (isLoading) <Loading />;
+  if (isLoading) return <Loading withNav={false} />;
 
-  if (error) <ErrorHandler error={error} />;
+  if (error) return <ErrorHandler error={error} />;
 
   return (
     <Container
-      containerClass="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
+      containerClass="w-full md:w-3/4 pt-6 px-4 md:px-0 mx-auto text-sm"
       tabTitle="Notifications"
     >
       <div className="mb-3">
@@ -49,7 +49,7 @@ const Notifications = () => {
               key={notif.id}
               onClick={() => viewedNotif({ notifId: notif.id })}
               to={
-                notif.notifType === 'FOLLOW'
+                notif.notifType === "FOLLOW"
                   ? `/profile/${notif.notifFrom.username}`
                   : `/posts/${notif.typeId}`
               }
@@ -59,9 +59,9 @@ const Notifications = () => {
                   <img
                     src={
                       notif.notifFrom.profileImage ||
-                      'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
+                      "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
                     }
-                    alt={(notif.notifFrom.username || 'user') + 'avatar'}
+                    alt={(notif.notifFrom.username || "user") + "avatar"}
                     className="w-8 h-8 object-cover rounded-full"
                   />
                   {!notif.viewed && (
@@ -76,7 +76,7 @@ const Notifications = () => {
               </div>
             </Link>
           ))
-        : 'Nothing to show for now...'}
+        : "Nothing to show for now..."}
     </Container>
   );
 };

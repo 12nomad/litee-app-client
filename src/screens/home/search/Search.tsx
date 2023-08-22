@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import useSearch from '../../../hooks/useSearch';
-import { useAppSelector } from '../../../store/store';
-import { Link } from 'react-router-dom';
-import RepostHeader from '../posts-feed/components/shared/RepostHeader';
-import Container from '../../../components/ui/Container';
+import useSearch from "../../../hooks/useSearch";
+import { useAppSelector } from "../../../store/store";
+import { Link } from "react-router-dom";
+import RepostHeader from "../posts-feed/components/shared/RepostHeader";
+import Container from "../../../components/ui/Container";
 
 const Search = () => {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const { data, isLoading } = useSearch(username);
   const user = useAppSelector((s) => s.user.user);
 
@@ -16,7 +16,7 @@ const Search = () => {
 
   return (
     <Container
-      containerClass="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full"
+      containerClass="w-full md:w-3/4 pt-6 px-4 md:px-0 relative mx-auto text-sm h-full"
       tabTitle="Search"
     >
       <header>
@@ -41,7 +41,7 @@ const Search = () => {
         <div className="w-full h-[1px] bg-black-rich-tint -mt-[2px] z-10 mb-5"></div>
       </header>
 
-      {username !== '' &&
+      {username !== "" &&
         (!isLoading && userResult && userResult.length > 0 ? (
           userResult.map((user) => (
             <Link

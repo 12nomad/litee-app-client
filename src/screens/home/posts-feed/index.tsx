@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import { useGetFeedPostsQuery } from '../../../store/features/api.slice';
-import ErrorHandler from '../../../components/ui/ErrorHandler';
-import PostArticle from './components/PostArticle';
-import Spinner from '../../../components/ui/Spinner';
-import Container from '../../../components/ui/Container';
+import { useGetFeedPostsQuery } from "../../../store/features/api.slice";
+import ErrorHandler from "../../../components/ui/ErrorHandler";
+import PostArticle from "./components/PostArticle";
+import Spinner from "../../../components/ui/Spinner";
+import Container from "../../../components/ui/Container";
 
 const PostsFeed = () => {
   const [page, setPage] = useState<number>(1);
@@ -25,7 +25,7 @@ const PostsFeed = () => {
           }
         }
       },
-      { threshold: 1 },
+      { threshold: 1 }
     );
 
     if (targetRef.current) {
@@ -41,7 +41,7 @@ const PostsFeed = () => {
 
   return (
     <Container
-      containerClass="w-full xl:w-3/4 mx-auto no-scrollbar"
+      containerClass="relative w-full xl:w-3/4 pt-6 mx-auto no-scrollbar"
       tabTitle="Feed"
     >
       <div className="space-y-8">
@@ -53,14 +53,14 @@ const PostsFeed = () => {
           <></>
         )}
 
-        {(isLoading || isFetching) && (
-          <div className="w-full flex justify-center">
-            <Spinner />
-          </div>
-        )}
-
-        <div ref={targetRef} className={isFetching ? 'mt-12' : ''}></div>
+        <div ref={targetRef} className={isFetching ? "mt-12" : ""}></div>
       </div>
+
+      {(isLoading || isFetching) && (
+        <div className="absolute top-0 left-0 pt-12 z-10 h-full w-full bg-black-rich/20 grid place-content-center">
+          <Spinner />
+        </div>
+      )}
     </Container>
   );
 };

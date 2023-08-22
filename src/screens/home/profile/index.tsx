@@ -1,7 +1,7 @@
-import { Tabs } from 'flowbite-react';
-import { VscFlame } from 'react-icons/vsc';
-import { BiBookmarkAltPlus } from 'react-icons/bi';
-import type { CustomFlowbiteTheme } from 'flowbite-react';
+import { Tabs } from "flowbite-react";
+import { VscFlame } from "react-icons/vsc";
+import { BiBookmarkAltPlus } from "react-icons/bi";
+import type { CustomFlowbiteTheme } from "flowbite-react";
 
 import {
   socket,
@@ -9,26 +9,26 @@ import {
   useLazyGetRoomByUserIdQuery,
   useLogoutMutation,
   useToggleFollowMutation,
-} from '../../../store/features/api.slice';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import Loading from '../../../components/ui/Loading';
-import ErrorHandler from '../../../components/ui/ErrorHandler';
-import { useAppDispatch, useAppSelector } from '../../../store/store';
-import ProfilePostArticle from './components/ProfilePostArticle';
-import { setPostInputModalOpen } from '../../../store/features/post.slice';
-import EditProfileInput from './components/EditProfileInput';
-import { EVENTS } from '../../../data/event.constant';
-import { clearUser } from '../../../store/features/user.slice';
-import Container from '../../../components/ui/Container';
+} from "../../../store/features/api.slice";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Loading from "../../../components/ui/Loading";
+import ErrorHandler from "../../../components/ui/ErrorHandler";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import ProfilePostArticle from "./components/ProfilePostArticle";
+import { setPostInputModalOpen } from "../../../store/features/post.slice";
+import EditProfileInput from "./components/EditProfileInput";
+import { EVENTS } from "../../../data/event.constant";
+import { clearUser } from "../../../store/features/user.slice";
+import Container from "../../../components/ui/Container";
 
-const customTabsTheme: CustomFlowbiteTheme['tab'] = {
+const customTabsTheme: CustomFlowbiteTheme["tab"] = {
   tablist: {
     tabitem: {
-      base: 'flex items-center justify-center p-4 rounded-t-lg text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500',
+      base: "flex items-center justify-center p-4 rounded-t-lg text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500",
       styles: {
         underline: {
           active: {
-            on: 'text-blue-cerulean rounded-t-lg border-b-2 border-blue-cerulean active dark:text-blue-cerulean dark:border-blue-cerulean',
+            on: "text-blue-cerulean rounded-t-lg border-b-2 border-blue-cerulean active dark:text-blue-cerulean dark:border-blue-cerulean",
           },
         },
       },
@@ -46,17 +46,17 @@ const Profile = () => {
   const [getRoom, { isLoading: roomLoading }] = useLazyGetRoomByUserIdQuery();
 
   const { data, isLoading, error } = useGetUserByUsernameQuery({
-    username: username || '',
+    username: username || "",
   });
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <Loading withNav={false} />;
 
   if (error) return <ErrorHandler error={error} />;
 
   const onGetRoom = async () => {
     const result = await getRoom({ userId: data?.id || 0 });
 
-    if (!('error' in result)) {
+    if (!("error" in result)) {
       navigate(`/messages/${result.data?.id}`);
     }
   };
@@ -64,11 +64,11 @@ const Profile = () => {
   const onLogout = async () => {
     const result = await logout();
 
-    if (!('error' in result)) {
-      socket.emit<`${EVENTS}`>('DISCONNECT', { username: user?.username });
+    if (!("error" in result)) {
+      socket.emit<`${EVENTS}`>("DISCONNECT", { username: user?.username });
       socket.disconnect();
       dispatch(clearUser());
-      navigate('/auth', { replace: true });
+      navigate("/auth", { replace: true });
     }
   };
 
@@ -79,7 +79,7 @@ const Profile = () => {
     await follow({
       authUserId: user?.id || 0,
       id: data?.id || 0,
-      username: data?.username || '',
+      username: data?.username || "",
     });
   };
 
@@ -90,29 +90,29 @@ const Profile = () => {
           val: true,
           element: (
             <EditProfileInput
-              description={data.description || ''}
-              name={data.name || ''}
+              description={data.description || ""}
+              name={data.name || ""}
               username={data.username}
-              profileImage={data.profileImage || ''}
+              profileImage={data.profileImage || ""}
             />
           ),
-        }),
+        })
       );
     }
   };
 
   return !isLoading && data ? (
     <Container
-      containerClass="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
+      containerClass="w-full md:w-3/4 pt-6 px-4 md:px-0 mx-auto text-sm"
       tabTitle={data.username}
     >
       <div className="w-full grid grid-cols-4 md:grid-cols-3 ">
         <img
           src={
             data.profileImage ||
-            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
+            "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
           }
-          alt={data.username + 'profile image'}
+          alt={data.username + "profile image"}
           className="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover"
         />
         <div className="col-span-3 md:col-span-2">
@@ -146,13 +146,13 @@ const Profile = () => {
                 <button
                   className={`px-2 py-1 rounded-md ${
                     userInFollowers
-                      ? 'bg-black-rich-tint'
-                      : 'bg-purple-eminence'
+                      ? "bg-black-rich-tint"
+                      : "bg-purple-eminence"
                   } `}
                   disabled={followLoading}
                   onClick={onFollow}
                 >
-                  {userInFollowers ? 'unfollow' : 'follow'}
+                  {userInFollowers ? "unfollow" : "follow"}
                 </button>
               </div>
             )}
@@ -162,11 +162,11 @@ const Profile = () => {
               <span className="font-medium">{data._count.posts}</span> Posts
             </p>
             <p>
-              <span className="font-medium">{data._count.following}</span>{' '}
+              <span className="font-medium">{data._count.following}</span>{" "}
               Following
             </p>
             <p>
-              <span className="font-medium">{data._count.followers}</span>{' '}
+              <span className="font-medium">{data._count.followers}</span>{" "}
               Followers
             </p>
           </div>

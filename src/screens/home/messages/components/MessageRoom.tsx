@@ -1,20 +1,20 @@
-import { IoMdSend } from 'react-icons/io';
-import { BiMessageRoundedEdit } from 'react-icons/bi';
+import { IoMdSend } from "react-icons/io";
+import { BiMessageRoundedEdit } from "react-icons/bi";
 
 import {
   useCreateMessageMutation,
   useGetRoomQuery,
-} from '../../../../store/features/api.slice';
-import Loading from '../../../../components/ui/Loading';
-import ErrorHandler from '../../../../components/ui/ErrorHandler';
-import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../../store/store';
-import { setPostInputModalOpen } from '../../../../store/features/post.slice';
-import EditRoomNameInput from './EditRoomNameInput';
-import { Avatar } from 'flowbite-react';
-import { ChangeEvent, useRef, useState } from 'react';
-import useMessageRoom from '../hooks/useMessageRoom';
-import Container from '../../../../components/ui/Container';
+} from "../../../../store/features/api.slice";
+import Loading from "../../../../components/ui/Loading";
+import ErrorHandler from "../../../../components/ui/ErrorHandler";
+import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../../store/store";
+import { setPostInputModalOpen } from "../../../../store/features/post.slice";
+import EditRoomNameInput from "./EditRoomNameInput";
+import { Avatar } from "flowbite-react";
+import { ChangeEvent, useRef, useState } from "react";
+import useMessageRoom from "../hooks/useMessageRoom";
+import Container from "../../../../components/ui/Container";
 
 const MessageRoom = () => {
   const { roomId: id } = useParams<{ roomId: string }>();
@@ -22,7 +22,7 @@ const MessageRoom = () => {
   const { data, isLoading, error } = useGetRoomQuery({ id: id ? +id : 0 });
   const [createMessage, { isLoading: messageLoading }] =
     useCreateMessageMutation();
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const dispatch = useAppDispatch();
   const user = useAppSelector((s) => s.user.user);
   const lastMessageRef = useRef<HTMLParagraphElement | null>(null);
@@ -42,7 +42,7 @@ const MessageRoom = () => {
             roomId={data?.id || 0}
           />
         ),
-      }),
+      })
     );
   };
 
@@ -55,14 +55,14 @@ const MessageRoom = () => {
   const onSendMessage = async () => {
     const result = await createMessage({ message, roomId: id ? +id : 0 });
 
-    if (!('error' in result)) {
-      setMessage('');
+    if (!("error" in result)) {
+      setMessage("");
     }
   };
 
   return (
     <Container
-      containerClass="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full overflow-hidden min-h-[calc(100vh-100px)]"
+      containerClass="w-full md:w-3/4 pt-6 px-4 md:px-0 relative mx-auto text-sm h-full overflow-hidden min-h-[calc(100vh-100px)]"
       tabTitle="Chat"
     >
       <div className="mb-3">
@@ -80,9 +80,9 @@ const MessageRoom = () => {
                           key={user.id}
                           src={
                             user.profileImage ||
-                            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
+                            "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
                           }
-                          alt={user.username + 'avatar'}
+                          alt={user.username + "avatar"}
                           className="w-8 h-8 object-cover rounded-full"
                         />
                       ))}
@@ -100,7 +100,7 @@ const MessageRoom = () => {
                       .slice(0, 2)
                       .map((user, idx) => (
                         <span key={user.username}>
-                          {`${user.username}${idx === 1 ? ', ...' : ', '}`}
+                          {`${user.username}${idx === 1 ? ", ..." : ", "}`}
                         </span>
                       ))}
                   </p>
@@ -114,9 +114,9 @@ const MessageRoom = () => {
                       (data.users[0].username === user?.username
                         ? data.users[1].profileImage
                         : data.users[0].profileImage)) ||
-                    'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
+                    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
                   }
-                  alt={data?.users[0].username + 'avatar'}
+                  alt={data?.users[0].username + "avatar"}
                   className="w-8 h-8 object-cover rounded-full"
                 />
                 <p className="font-medium">
@@ -213,13 +213,13 @@ const MessageRoom = () => {
                 } ${
                   message.senderId !== user?.id &&
                   message.senderId !== data?.messages[idx + 1]?.senderId &&
-                  'mb-5'
+                  "mb-5"
                 }`}
               >
                 {message.message}
               </p>
             </div>
-          ),
+          )
         )}
       </div>
 

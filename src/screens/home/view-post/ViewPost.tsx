@@ -1,15 +1,15 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { AiOutlineComment } from 'react-icons/ai';
+import { useNavigate, useParams } from "react-router-dom";
+import { AiOutlineComment } from "react-icons/ai";
 
-import { useGetPostByIdQuery } from '../../../store/features/api.slice';
-import Loading from '../../../components/ui/Loading';
-import ErrorHandler from '../../../components/ui/ErrorHandler';
-import PostFooter from '../posts-feed/components/shared/PostFooter';
-import RepostHeader from '../posts-feed/components/shared/RepostHeader';
-import moment from 'moment';
-import PostMedia from '../posts-feed/components/shared/PostMedia';
-import ProfileImage from '../../../components/ui/ProfileImage';
-import Container from '../../../components/ui/Container';
+import { useGetPostByIdQuery } from "../../../store/features/api.slice";
+import Loading from "../../../components/ui/Loading";
+import ErrorHandler from "../../../components/ui/ErrorHandler";
+import PostFooter from "../posts-feed/components/shared/PostFooter";
+import RepostHeader from "../posts-feed/components/shared/RepostHeader";
+import moment from "moment";
+import PostMedia from "../posts-feed/components/shared/PostMedia";
+import ProfileImage from "../../../components/ui/ProfileImage";
+import Container from "../../../components/ui/Container";
 
 const ViewPost = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -28,7 +28,7 @@ const ViewPost = () => {
 
   return !isLoading && data ? (
     <Container
-      containerClass="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
+      containerClass="w-full md:w-3/4 pt-6 px-4 md:px-0 mx-auto text-sm"
       tabTitle="Post"
     >
       <article className="w-full ">
@@ -90,7 +90,7 @@ const ViewPost = () => {
                 <p className="flex items-center gap-2">
                   <span className="font-medium text-purple-eminence hover:underline cursor-pointer">
                     {comment.user.username}
-                  </span>{' '}
+                  </span>{" "}
                   <sup>.</sup> {comment.comment}
                 </p>
                 <div className="font-extralight text-xs">

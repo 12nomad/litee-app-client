@@ -8,7 +8,7 @@ const Spinner = ({ lg = false }: ISpinner) => {
       <svg
         aria-hidden="true"
         className={`inline ${
-          lg ? 'w-8 h-8' : 'w-4 h-4'
+          lg ? "w-8 h-8" : "w-4 h-4"
         } text-gray-200 animate-spin dark:text-gray-600 fill-purple-eminence`}
         viewBox="0 0 100 101"
         fill="none"

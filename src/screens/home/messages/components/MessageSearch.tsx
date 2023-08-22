@@ -1,25 +1,25 @@
-import { useState } from 'react';
-import type { CustomFlowbiteTheme } from 'flowbite-react';
-import { Badge } from 'flowbite-react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import type { CustomFlowbiteTheme } from "flowbite-react";
+import { Badge } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
-import useSearch from '../../../../hooks/useSearch';
-import ErrorHandler from '../../../../components/ui/ErrorHandler';
-import RepostHeader from '../../posts-feed/components/shared/RepostHeader';
-import { useAppSelector } from '../../../../store/store';
-import { useCreateRoomMutation } from '../../../../store/features/api.slice';
-import Container from '../../../../components/ui/Container';
+import useSearch from "../../../../hooks/useSearch";
+import ErrorHandler from "../../../../components/ui/ErrorHandler";
+import RepostHeader from "../../posts-feed/components/shared/RepostHeader";
+import { useAppSelector } from "../../../../store/store";
+import { useCreateRoomMutation } from "../../../../store/features/api.slice";
+import Container from "../../../../components/ui/Container";
 
-const customBadgeTheme: CustomFlowbiteTheme['badge'] = {
+const customBadgeTheme: CustomFlowbiteTheme["badge"] = {
   root: {
     color: {
-      info: 'bg-blue-cerulean text-white-powder dark:bg-blue-cerulean dark:text-white-powder group-hover:bg-blue-cerulean dark:group-hover:bg-blue-cerulean',
+      info: "bg-blue-cerulean text-white-powder dark:bg-blue-cerulean dark:text-white-powder group-hover:bg-blue-cerulean dark:group-hover:bg-blue-cerulean",
     },
   },
 };
 
 const MessageSearch = () => {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [usersToChat, setUsersToChat] = useState<string[]>([]);
   const user = useAppSelector((s) => s.user.user);
   const { data, isLoading, error } = useSearch(username);
@@ -33,12 +33,12 @@ const MessageSearch = () => {
     data &&
     data.filter(
       (el) =>
-        el.username !== user?.username && !usersToChat.includes(el.username),
+        el.username !== user?.username && !usersToChat.includes(el.username)
     );
 
   const onSelectUser = (username: string) => {
     setUsersToChat((prev) => [...prev, username]);
-    setUsername('');
+    setUsername("");
   };
 
   const onDeselectUser = (username: string) => {
@@ -48,14 +48,14 @@ const MessageSearch = () => {
   const onCreateChat = async () => {
     const result = await createRoom({ usersArray: usersToChat });
 
-    if (!('error' in result)) {
-      navigate('/messages');
+    if (!("error" in result)) {
+      navigate("/messages");
     }
   };
 
   return (
     <Container
-      containerClass="min-h-[calc(100vh-110px)] w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
+      containerClass="min-h-[calc(100vh-110px)] w-full md:w-3/4 pt-6 px-4 md:px-0 mx-auto text-sm"
       tabTitle="New Message"
     >
       <header>
@@ -110,7 +110,7 @@ const MessageSearch = () => {
           <div className="mt-3 border border-black-rich-tint rounded-md p-2 flex items-center gap-2">
             {usersToChat.map((username) => (
               <Badge key={username} theme={customBadgeTheme}>
-                {username}{' '}
+                {username}{" "}
                 <span
                   className="cursor-pointer"
                   onClick={() => onDeselectUser(username)}
