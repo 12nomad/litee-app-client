@@ -49,7 +49,7 @@ const Profile = () => {
     username: username || "",
   });
 
-  if (isLoading) return <Loading withNav={false} />;
+  if (isLoading) return <Loading />;
 
   if (error) return <ErrorHandler error={error} />;
 
@@ -103,7 +103,7 @@ const Profile = () => {
 
   return !isLoading && data ? (
     <Container
-      containerClass="w-full md:w-3/4 pt-6 px-4 md:px-0 mx-auto text-sm"
+      containerClass="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
       tabTitle={data.username}
     >
       <div className="w-full grid grid-cols-4 md:grid-cols-3 ">

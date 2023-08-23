@@ -17,13 +17,13 @@ const Notifications = () => {
   const [viewedNotif] = useViewedNotifMutation();
   const [deleteNotifs] = useDeleteNotifsMutation();
 
-  if (isLoading) return <Loading withNav={false} />;
+  if (isLoading) return <Loading />;
 
   if (error) return <ErrorHandler error={error} />;
 
   return (
     <Container
-      containerClass="w-full md:w-3/4 pt-6 px-4 md:px-0 mx-auto text-sm"
+      containerClass="w-full md:w-3/4 px-4 md:px-0 mx-auto text-sm"
       tabTitle="Notifications"
     >
       <div className="mb-3">

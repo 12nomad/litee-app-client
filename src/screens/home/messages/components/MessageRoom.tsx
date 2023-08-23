@@ -62,7 +62,7 @@ const MessageRoom = () => {
 
   return (
     <Container
-      containerClass="w-full md:w-3/4 pt-6 px-4 md:px-0 relative mx-auto text-sm h-full overflow-hidden min-h-[calc(100vh-100px)]"
+      containerClass="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full overflow-hidden min-h-[calc(100vh-100px)]"
       tabTitle="Chat"
     >
       <div className="mb-3">

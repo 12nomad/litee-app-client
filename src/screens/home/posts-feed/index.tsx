@@ -41,7 +41,7 @@ const PostsFeed = () => {
 
   return (
     <Container
-      containerClass="relative w-full xl:w-3/4 pt-6 mx-auto no-scrollbar"
+      containerClass="relative w-full xl:w-3/4 mx-auto no-scrollbar"
       tabTitle="Feed"
     >
       <div className="space-y-8">
@@ -57,7 +57,7 @@ const PostsFeed = () => {
       </div>
 
       {(isLoading || isFetching) && (
-        <div className="absolute top-0 left-0 pt-12 z-10 h-full w-full bg-black-rich/20 grid place-content-center">
+        <div className="absolute -top-10 xl:-top-6 left-0 z-10 h-full w-full bg-black-rich/20 grid place-content-center">
           <Spinner />
         </div>
       )}

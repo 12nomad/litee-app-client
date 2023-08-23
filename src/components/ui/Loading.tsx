@@ -7,8 +7,8 @@ interface ILoading {
 const Loading = ({ withNav = true }: ILoading) => {
   return (
     <div
-      className={` w-full grid place-items-center ${
-        withNav ? "h-[calc(100vh-52px)]" : "h-screen"
+      className={`w-full grid place-items-center ${
+        withNav ? "h-full" : "h-screen"
       }`}
     >
       <Spinner lg={true} />

@@ -58,7 +58,7 @@ const Home = () => {
         >
           <Sidebar toggleNav={toggleNav} />
         </aside>
-        <main className="max-h-[calc(100vh-76px)] col-span-3 xl:col-span-2 overflow-auto no-scrollbar">
+        <main className="max-h-[calc(100vh-76px)] pt-6 col-span-3 xl:col-span-2 overflow-auto no-scrollbar">
           {postInputModalOpen && <PostModal />}
           <Routes>
             <Route index element={<PostsFeed />} />
