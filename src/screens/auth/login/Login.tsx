@@ -1,31 +1,31 @@
-import { FieldValues, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Link, useNavigate } from 'react-router-dom';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
-import { SerializedError } from '@reduxjs/toolkit';
+import { FieldValues, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Link, useNavigate } from "react-router-dom";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
+import { SerializedError } from "@reduxjs/toolkit";
 
-import Input from '../../../components/form/Input';
-import SubmitButton from '../../../components/form/SubmitButton';
-import { IFormField } from '../../../interfaces/form-fields.interface';
+import Input from "../../../components/form/Input";
+import SubmitButton from "../../../components/form/SubmitButton";
+import { IFormField } from "../../../interfaces/form-fields.interface";
 import {
   LogInValidationSchema,
   logInValidationSchema,
-} from '../../../schemas/auth.schema';
+} from "../../../schemas/auth.schema";
 import {
   CommonOutput,
   useLoginMutation,
-} from '../../../store/features/api.slice';
-import Container from '../../../components/ui/Container';
+} from "../../../store/features/api.slice";
+import Container from "../../../components/ui/Container";
 
 const loginFields: IFormField<FieldValues>[] = [
   {
-    label: 'Username or e-mail: ',
-    name: 'usernameOrEmail',
+    label: "Username or e-mail: ",
+    name: "usernameOrEmail",
   },
   {
-    label: 'Password: ',
-    name: 'password',
-    type: 'password',
+    label: "Password: ",
+    name: "password",
+    type: "password",
   },
 ];
 
@@ -59,9 +59,9 @@ const Login = () => {
       result = await login({ email: usernameOrEmail, password });
     else result = await login({ username: usernameOrEmail, password });
 
-    if (!('error' in result)) {
+    if (!("error" in result)) {
       reset();
-      return navigate('/', { replace: true });
+      return navigate("/", { replace: true });
     }
   };
 
@@ -91,7 +91,7 @@ const Login = () => {
 
             <div className="flex justify-between items-center gap-2 md:gap-0">
               <p className="text-sm font-light text-gray-600 ">
-                No account yet?{' '}
+                No account yet?{" "}
                 <Link
                   to="/auth/register"
                   className="font-medium text-blue-cerulean hover:underline underline"

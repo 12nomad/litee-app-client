@@ -2,29 +2,29 @@ import {
   HiOutlineHome,
   HiOutlineLogin,
   HiOutlineUserCircle,
-} from 'react-icons/hi';
-import { MdOutlineNotificationsActive, MdOutlineAddBox } from 'react-icons/md';
+} from "react-icons/hi";
+import { MdOutlineNotificationsActive, MdOutlineAddBox } from "react-icons/md";
 import {
   BiPaperPlane,
   BiDotsHorizontalRounded,
   BiSearchAlt,
-} from 'react-icons/bi';
-import { CgClose } from 'react-icons/cg';
-import { Dropdown } from 'flowbite-react';
-import { NavLink, useNavigate } from 'react-router-dom';
+} from "react-icons/bi";
+import { CgClose } from "react-icons/cg";
+import { Dropdown } from "flowbite-react";
+import { NavLink, useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useAppDispatch, useAppSelector } from "../../store/store";
 import {
   socket,
   useGetMessageNotifsCountQuery,
   useGetNotifsCountQuery,
   useLogoutMutation,
-} from '../../store/features/api.slice';
-import { clearUser } from '../../store/features/user.slice';
-import { setPostInputModalOpen } from '../../store/features/post.slice';
-import PostInput from '../../screens/home/posts-feed/components/PostInput';
-import { EVENTS } from '../../data/event.constant';
-import ProfileImage from './ProfileImage';
+} from "../../store/features/api.slice";
+import { clearUser } from "../../store/features/user.slice";
+import { setPostInputModalOpen } from "../../store/features/post.slice";
+import PostInput from "../../screens/home/posts-feed/components/PostInput";
+import { EVENTS } from "../../data/event.constant";
+import ProfileImage from "./ProfileImage";
 
 interface ISidebar {
   toggleNav: (val: boolean) => void;
@@ -51,11 +51,12 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
   const onSignout = async () => {
     const result = await logout();
 
-    if (!('error' in result)) {
-      socket.emit<`${EVENTS}`>('DISCONNECT', { username: user?.username });
+    if (!("error" in result)) {
+      socket.emit<`${EVENTS}`>("DISCONNECT", { username: user?.username });
       socket.disconnect();
       dispatch(clearUser());
-      return navigate('/auth', { replace: true });
+      localStorage.removeItem("lt-app-key");
+      return navigate("/auth", { replace: true });
     }
   };
 
@@ -66,7 +67,7 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
+              isActive ? "dark:text-purple-eminence" : "dark:text-white-powder"
             }
             onClick={() => toggleNav(false)}
           >
@@ -86,7 +87,7 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
         <NavLink
           to="/notifications"
           className={({ isActive }) =>
-            isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
+            isActive ? "dark:text-purple-eminence" : "dark:text-white-powder"
           }
           onClick={() => toggleNav(false)}
         >
@@ -108,7 +109,7 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
         <NavLink
           to="/messages"
           className={({ isActive }) =>
-            isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
+            isActive ? "dark:text-purple-eminence" : "dark:text-white-powder"
           }
           onClick={() => toggleNav(false)}
         >
@@ -130,7 +131,7 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
         <NavLink
           to={`/search`}
           className={({ isActive }) =>
-            isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
+            isActive ? "dark:text-purple-eminence" : "dark:text-white-powder"
           }
           onClick={() => toggleNav(false)}
         >
@@ -143,7 +144,7 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
         <NavLink
           to={`/profile/${user?.username}`}
           className={({ isActive }) =>
-            isActive ? 'dark:text-purple-eminence' : 'dark:text-white-powder'
+            isActive ? "dark:text-purple-eminence" : "dark:text-white-powder"
           }
           onClick={() => toggleNav(false)}
         >

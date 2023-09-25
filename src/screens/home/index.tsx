@@ -16,6 +16,7 @@ import Notifications from "./notifications";
 import { socket } from "../../store/features/api.slice";
 import { EVENTS } from "../../data/event.constant";
 import Search from "./search/Search";
+import NotFound from "../common/not-found/NotFound";
 
 const Home = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -69,6 +70,7 @@ const Home = () => {
             <Route path="profile/:username" element={<Profile />} />
             <Route path="messages/new" element={<MessageSearch />} />
             <Route path="messages/:roomId" element={<MessageRoom />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </div>

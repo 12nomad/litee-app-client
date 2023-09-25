@@ -78,7 +78,7 @@ export const api = createApi({
     // TODO: user
     getAuthUser: builder.query<User, void>({
       query: () => "users",
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: Infinity,
     }),
     searchUserByUsername: builder.query<User[], { username: string }>({
       query: ({ username }) => `users/search-user?username=${username}`,

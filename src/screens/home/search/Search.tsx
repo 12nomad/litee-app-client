@@ -16,7 +16,7 @@ const Search = () => {
 
   return (
     <Container
-      containerClass="w-full md:w-3/4 pt-6 px-4 md:px-0 relative mx-auto text-sm h-full"
+      containerClass="w-full md:w-3/4 px-4 md:px-0 relative mx-auto text-sm h-full"
       tabTitle="Search"
     >
       <header>
