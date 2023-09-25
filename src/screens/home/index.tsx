@@ -3,20 +3,20 @@ import { Toaster } from "react-hot-toast";
 import { useCallback, useEffect, useState } from "react";
 
 import { useAppSelector } from "../../store/store";
+import { socket } from "../../store/features/api.slice";
+import { EVENTS } from "../../data/event.constant";
 import Sidebar from "../../components/ui/Sidebar";
 import Nav from "../../components/ui/Nav";
 import PostsFeed from "./posts-feed";
 import PostModal from "../../components/ui/PostModal";
-import ViewPost from "./view-post/ViewPost";
+import ViewPost from "./view-post";
 import MessageInbox from "./messages";
 import MessageSearch from "./messages/components/MessageSearch";
 import Profile from "./profile";
 import MessageRoom from "./messages/components/MessageRoom";
 import Notifications from "./notifications";
-import { socket } from "../../store/features/api.slice";
-import { EVENTS } from "../../data/event.constant";
-import Search from "./search/Search";
-import NotFound from "../common/not-found/NotFound";
+import Search from "./search";
+import NotFound from "../common/not-found";
 
 const Home = () => {
   const [navOpen, setNavOpen] = useState(false);

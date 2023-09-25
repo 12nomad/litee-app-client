@@ -1,11 +1,11 @@
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import Loading from "../components/ui/Loading";
-import { socket, useGetAuthUserQuery } from "../store/features/api.slice";
-import { useAppDispatch } from "../store/store";
-import { addUser } from "../store/features/user.slice";
-import { EVENTS } from "../data/event.constant";
+import Loading from "../../components/ui/Loading";
+import { socket, useGetAuthUserQuery } from "../../store/features/api.slice";
+import { useAppDispatch } from "../../store/store";
+import { addUser } from "../../store/features/user.slice";
+import { EVENTS } from "../../data/event.constant";
 
 const Guard = () => {
   const { isLoading, currentData, error, isError } = useGetAuthUserQuery();

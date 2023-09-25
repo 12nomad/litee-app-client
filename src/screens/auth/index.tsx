@@ -35,7 +35,7 @@ const Auth = () => {
     >
       <div className="m-auto order-last xl:order-none">
         <h2 className="flex items-center justify-center gap-1 text-4xl mt-6 xl:mt-0 text-white-powder">
-          <span className="font-lobster underline">Litee.</span>
+          <span className="font-lobster">Litee.</span>
         </h2>
         <p className="mb-6 mt-2">Share whatever comes through your mind...</p>
         <Outlet />
