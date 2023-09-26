@@ -5,13 +5,9 @@ import { useEffect } from "react";
 import lottiefile from "../../assets/lottie/animation_ljztp22z.json";
 import { socket } from "../../store/features/api.slice";
 import { EVENTS } from "../../data/event.constant";
-import { useAppSelector } from "../../store/store";
 
 const Auth = () => {
   const location = useLocation();
-
-  const user = useAppSelector((s) => s.user.user);
-  console.log(user);
 
   useEffect(() => {
     document.querySelector("html")!.classList.remove("dark");
