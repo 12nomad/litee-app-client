@@ -14,8 +14,8 @@ const Input = <T extends FieldValues>({
   register,
   isDisabled = true,
   type = "text",
-  placeholder = "......",
-}: IInput<T>) => {
+}: // placeholder = "......",
+IInput<T>) => {
   return (
     <div>
       <label
