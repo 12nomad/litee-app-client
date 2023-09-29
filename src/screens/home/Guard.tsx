@@ -22,7 +22,7 @@ const Guard = () => {
       } else if (!isLoading && error) {
         return navigate("/auth", { replace: true });
       }
-    }, 1000);
+    }, 2500);
 
     return () => {
       clearTimeout(delay);
