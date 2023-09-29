@@ -8,20 +8,20 @@ import { addUser } from "../../store/features/user.slice";
 import { EVENTS } from "../../data/event.constant";
 
 const Guard = () => {
-  const { isLoading, data, error, isError } = useGetAuthUserQuery();
+  const { isLoading, data, error, isFetching } = useGetAuthUserQuery();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoading && data && data.username) {
+    if (!isLoading && !isFetching && data) {
       dispatch(addUser({ user: data }));
       localStorage.setItem("lt-app-key", data.username);
       socket.connect();
       socket.emit<`${EVENTS}`>("CONNECT", { username: data.username });
-    } else if (!isLoading && isError) {
+    } else if (!isLoading && !isFetching && !data) {
       return navigate("/auth", { replace: true });
     }
-  }, [isLoading, isError, data]);
+  }, [data]);
 
   if (isLoading) return <Loading withNav={false} />;
 
