@@ -55,7 +55,7 @@ const Sidebar = ({ toggleNav }: ISidebar) => {
       socket.emit<`${EVENTS}`>("DISCONNECT", { username: user?.username });
       socket.disconnect();
       dispatch(clearUser());
-      localStorage.removeItem("lt-app-key");
+      sessionStorage.removeItem("lt-app-key");
       return navigate("/auth", { replace: true });
     }
   };

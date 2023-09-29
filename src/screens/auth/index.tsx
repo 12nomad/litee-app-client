@@ -12,13 +12,13 @@ const Auth = () => {
   useEffect(() => {
     document.querySelector("html")!.classList.remove("dark");
 
-    const key = localStorage.getItem("lt-app-key");
-    if (key) {
+    const key = sessionStorage.getItem("lt-app-key");
+    if (key)
       socket.emit<`${EVENTS}`>("DISCONNECT", {
         username: key,
       });
-      socket.disconnect();
-    }
+
+    socket.disconnect();
   }, []);
 
   return (

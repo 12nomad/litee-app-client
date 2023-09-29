@@ -68,7 +68,7 @@ const Profile = () => {
       socket.emit<`${EVENTS}`>("DISCONNECT", { username: user?.username });
       socket.disconnect();
       dispatch(clearUser());
-      localStorage.removeItem("lt-app-key");
+      sessionStorage.removeItem("lt-app-key");
       navigate("/auth", { replace: true });
     }
   };
