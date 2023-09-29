@@ -4,7 +4,7 @@ import Auth from "./screens/auth";
 import Login from "./screens/auth/login";
 import Guard from "./screens/home/Guard";
 import Home from "./screens/home";
-import Register from "./screens/auth/register/Register";
+import Register from "./screens/auth/register";
 import PasswordReset from "./screens/auth/password-reset";
 import NotFound from "./screens/common/not-found";
 
