@@ -9,6 +9,7 @@ A social media app
 - Typescript, React.js, Vite
 - Redux Toolkit for state management and data fetching
 - Socket.io for realtime messaging
+- Cloudinary for file upload
 - React Hook Form, Zod, Flowbite Tailwind CSS, Lottie Animation
 
 ## ✨ Features
